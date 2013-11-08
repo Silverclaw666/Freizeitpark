@@ -1,0 +1,23 @@
+﻿<Window x:Class="Freizeitpark.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStartupLocation="CenterScreen"
+        Title="Freizeitpark Simulation" Height="878" Width="1202">
+    <Grid>
+        <ListBox x:Name="lb_personen" HorizontalAlignment="Left" Height="838" Margin="922,10,0,0" VerticalAlignment="Top" Width="262" ItemsSource="{Binding}" ItemTemplate="{DynamicResource BesucherTemplate}"/>
+        <Button x:Name="Start_Button" Content="RELEASE THE KRAKEN!" HorizontalAlignment="Left" Margin="779,816,0,0" VerticalAlignment="Top" Width="138" Click="Start_Button_Click"/>
+        <Label x:Name="lb_cycle" Content="Park ist geöffnet!" HorizontalAlignment="Left" Margin="779,10,0,0" VerticalAlignment="Top" Width="138"/>
+        <Label x:Name="lb_money" Content="Geld: " HorizontalAlignment="Left" Margin="779,41,0,0" VerticalAlignment="Top" Width="138"/>
+    </Grid>
+    <Window.Resources>
+        <DataTemplate x:Key="BesucherTemplate">
+            <StackPanel x:Name="stack_besucher" Orientation="Horizontal">
+                <TextBlock Text="{Binding Path=Name}" Width="70"/>
+                <TextBlock Text="{Binding Path=Status}" Width="100"/>
+                <TextBlock Text="{Binding Path=Geld}" Width="50" TextAlignment="Right"/>
+                <TextBlock Text="{Binding Path=Currency}" Width="10"/>
+            </StackPanel>
+        </DataTemplate>
+        
+    </Window.Resources>
+</Window>
