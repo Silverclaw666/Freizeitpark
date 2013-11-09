@@ -4,18 +4,19 @@
         WindowStartupLocation="CenterScreen"
         Title="Freizeitpark Simulation" Height="878" Width="1202">
     <Grid>
-        <ListBox x:Name="lb_personen" HorizontalAlignment="Left" Height="838" Margin="922,10,0,0" VerticalAlignment="Top" Width="262" ItemsSource="{Binding}" ItemTemplate="{DynamicResource BesucherTemplate}"/>
-        <Button x:Name="Start_Button" Content="RELEASE THE KRAKEN!" HorizontalAlignment="Left" Margin="779,816,0,0" VerticalAlignment="Top" Width="138" Click="Start_Button_Click"/>
-        <Label x:Name="lb_cycle" Content="" HorizontalAlignment="Left" Margin="779,10,0,0" VerticalAlignment="Top" Width="138"/>
-        <Label x:Name="lb_money" Content="Geld: " HorizontalAlignment="Left" Margin="779,41,0,0" VerticalAlignment="Top" Width="138"/>
+        <ListBox x:Name="lb_personen" HorizontalAlignment="Left" Height="838" Margin="888,10,0,0" VerticalAlignment="Top" Width="296" ItemsSource="{Binding}" ItemTemplate="{DynamicResource BesucherTemplate}"/>
+        <Button x:Name="Start_Button" Content="RELEASE THE KRAKEN!" HorizontalAlignment="Left" Margin="745,816,0,0" VerticalAlignment="Top" Width="138" Click="Start_Button_Click"/>
+        <Label x:Name="lb_cycle" Content="" HorizontalAlignment="Left" Margin="745,10,0,0" VerticalAlignment="Top" Width="138"/>
+        <Label x:Name="lb_money" Content="" HorizontalAlignment="Left" Margin="745,41,0,0" VerticalAlignment="Top" Width="138"/>
+        <TextBox x:Name="tb_time" HorizontalAlignment="Left" Height="30" Margin="596,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="161"/>
     </Grid>
     <Window.Resources>
         <DataTemplate x:Key="BesucherTemplate">
             <StackPanel x:Name="stack_besucher" Orientation="Horizontal">
-                <TextBlock Text="{Binding Path=Name}" Width="70"/>
-                <TextBlock Text="{Binding Path=Status}" Width="100"/>
+                <TextBlock Text="{Binding Path=Name}" Width="60"/>
                 <TextBlock Text="{Binding Path=Geld}" Width="50" TextAlignment="Right"/>
-                <TextBlock Text="{Binding Path=Currency}" Width="10"/>
+                <TextBlock Text="{Binding Path=Currency}" Width="30"/>
+                <TextBlock Text="{Binding Path=Status}" Width="130"/>
             </StackPanel>
         </DataTemplate>
         

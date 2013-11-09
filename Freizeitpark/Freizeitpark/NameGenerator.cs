@@ -9,7 +9,6 @@ namespace Freizeitpark
     public class NameGenerator
     {
         Random rand = new Random();
-        String bname;
         String mname = "David Mark Patrick Stefan Anton Maik Niklas Marco Hans Carl Mike Axel Stefan Sven Wolfgang Patrick";
         String wname = "Bettina Elisabeth Ulrike Alexandra Nadine Esther Daniela Nadja Nicole Annika Nathalie Claudia Nicole Linda Michaela";
         String[] mnames;

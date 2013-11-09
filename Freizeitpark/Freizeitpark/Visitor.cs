@@ -75,7 +75,7 @@ namespace Freizeitpark
 
         private void Start()
         {
-            this.Status = "wandert";
+            Status = "wandert";
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
