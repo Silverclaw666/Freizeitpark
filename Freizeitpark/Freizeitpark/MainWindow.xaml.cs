@@ -84,6 +84,7 @@ namespace Freizeitpark
                 besucher.Add(new Visitor(ng.GenName(),"tritt ein",rand.Next(30,150)));
                 besucher[i].StartThread(); 
             }
+            this.Dispatcher.BeginInvoke(new Action(() => lb_cycle.Content = "Der Park ist geöffnet!"));
 
         }
 

@@ -11,3 +11,16 @@ c:\users\silverclaw\documents\visual studio 2012\Projects\Freizeitpark\Freizeitp
 c:\users\silverclaw\documents\visual studio 2012\Projects\Freizeitpark\Freizeitpark\obj\Debug\Freizeitpark.csproj.GenerateResource.Cache
 c:\users\silverclaw\documents\visual studio 2012\Projects\Freizeitpark\Freizeitpark\obj\Debug\Freizeitpark.exe
 c:\users\silverclaw\documents\visual studio 2012\Projects\Freizeitpark\Freizeitpark\obj\Debug\Freizeitpark.pdb
+C:\Users\Silverclaw\Documents\GitHub\Freizeitpark\Freizeitpark\Freizeitpark\bin\Debug\Freizeitpark.exe.config
+C:\Users\Silverclaw\Documents\GitHub\Freizeitpark\Freizeitpark\Freizeitpark\obj\Debug\Freizeitpark.exe
+C:\Users\Silverclaw\Documents\GitHub\Freizeitpark\Freizeitpark\Freizeitpark\obj\Debug\Freizeitpark.pdb
+C:\Users\Silverclaw\Documents\GitHub\Freizeitpark\Freizeitpark\Freizeitpark\bin\Debug\Freizeitpark.exe
+C:\Users\Silverclaw\Documents\GitHub\Freizeitpark\Freizeitpark\Freizeitpark\bin\Debug\Freizeitpark.pdb
+C:\Users\Silverclaw\Documents\GitHub\Freizeitpark\Freizeitpark\Freizeitpark\obj\Debug\Freizeitpark.csprojResolveAssemblyReference.cache
+C:\Users\Silverclaw\Documents\GitHub\Freizeitpark\Freizeitpark\Freizeitpark\obj\Debug\MainWindow.baml
+C:\Users\Silverclaw\Documents\GitHub\Freizeitpark\Freizeitpark\Freizeitpark\obj\Debug\MainWindow.g.cs
+C:\Users\Silverclaw\Documents\GitHub\Freizeitpark\Freizeitpark\Freizeitpark\obj\Debug\App.g.cs
+C:\Users\Silverclaw\Documents\GitHub\Freizeitpark\Freizeitpark\Freizeitpark\obj\Debug\Freizeitpark_MarkupCompile.cache
+C:\Users\Silverclaw\Documents\GitHub\Freizeitpark\Freizeitpark\Freizeitpark\obj\Debug\Freizeitpark.g.resources
+C:\Users\Silverclaw\Documents\GitHub\Freizeitpark\Freizeitpark\Freizeitpark\obj\Debug\Freizeitpark.Properties.Resources.resources
+C:\Users\Silverclaw\Documents\GitHub\Freizeitpark\Freizeitpark\Freizeitpark\obj\Debug\Freizeitpark.csproj.GenerateResource.Cache

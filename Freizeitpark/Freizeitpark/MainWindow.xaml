@@ -6,7 +6,7 @@
     <Grid>
         <ListBox x:Name="lb_personen" HorizontalAlignment="Left" Height="838" Margin="922,10,0,0" VerticalAlignment="Top" Width="262" ItemsSource="{Binding}" ItemTemplate="{DynamicResource BesucherTemplate}"/>
         <Button x:Name="Start_Button" Content="RELEASE THE KRAKEN!" HorizontalAlignment="Left" Margin="779,816,0,0" VerticalAlignment="Top" Width="138" Click="Start_Button_Click"/>
-        <Label x:Name="lb_cycle" Content="Park ist geöffnet!" HorizontalAlignment="Left" Margin="779,10,0,0" VerticalAlignment="Top" Width="138"/>
+        <Label x:Name="lb_cycle" Content="" HorizontalAlignment="Left" Margin="779,10,0,0" VerticalAlignment="Top" Width="138"/>
         <Label x:Name="lb_money" Content="Geld: " HorizontalAlignment="Left" Margin="779,41,0,0" VerticalAlignment="Top" Width="138"/>
     </Grid>
     <Window.Resources>
