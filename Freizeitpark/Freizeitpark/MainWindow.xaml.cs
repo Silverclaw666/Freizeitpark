@@ -27,10 +27,11 @@ namespace Freizeitpark
     {
         public ObservableCollection<Visitor> besucher = new ObservableCollection<Visitor>();
         private AutoResetEvent drehkreuz = new AutoResetEvent(true);
-        System.Timers.Timer timecycle = new System.Timers.Timer(25000);
+        System.Timers.Timer timecycle = new System.Timers.Timer(300000);
         System.Timers.Timer countdown = new System.Timers.Timer(1000);
         int count = 0;
-        int earnedMoney = 0;
+        public int earnedMoney = 0;
+        public int startvisitors;
         NameGenerator ng = new NameGenerator();
         public bool ParkOpen = true;
         Random rand = new Random();
@@ -56,8 +57,8 @@ namespace Freizeitpark
             {
                 ParkOpen = false;
                 this.Dispatcher.BeginInvoke(new Action(() => lb_cycle.Content = "Park wird geschlossen!"));
+                abortVisitor();
                 foreach (Visitor v in besucher) {
-                    earnedMoney += v.Geld;
                     v.Status = "geht nach Hause";
                 }
                 
@@ -69,43 +70,68 @@ namespace Freizeitpark
                     
                 }
                 this.Dispatcher.BeginInvoke(new Action(() => lb_cycle.Content = "Park ist geschlossen!"));
-                this.Dispatcher.BeginInvoke(new Action(() => lb_money.Content = "Geld: " + earnedMoney));
             }
             else
             {
 
                 ParkOpen = true;
                 this.Dispatcher.BeginInvoke(new Action(() => lb_cycle.Content = "Park ist geöffnet!"));
-                for (int i = 0; i < 20; i++)
+                for (int i = 0; i < startvisitors; i++)
                 {
-                    this.Dispatcher.BeginInvoke(new Action(() => besucher.Add(new Visitor(ng.GenName(), "wartet in Schlange", rand.Next(30, 150)))));
+                    this.Dispatcher.BeginInvoke(new Action(() => besucher.Add(new Visitor(ng.GenName(), "wartet in Schlange", rand.Next(30, 150),this))));
                     Thread.Sleep(100);
                 }
-                foreach (Visitor v in besucher) {
-                    drehkreuz.WaitOne();
-                    v.Status = "geht durch Drehkreuz";
-                    Thread.Sleep(1000);
-                    drehkreuz.Set();
-                    v.StartThread();
-                }
+                VisitorDrehkreuz();
             }
         }
-
 
         public IEnumerator GetEnumerator()
         {
             throw new NotImplementedException();
         }
 
-        private void Start_Button_Click(object sender, RoutedEventArgs e)
-        {
-            for (int i = 0; i < 20; i++) {
-                besucher.Add(new Visitor(ng.GenName(),"tritt ein",rand.Next(30,150)));
-                besucher[i].StartThread();
+        private void VisitorDrehkreuz() {
+            foreach (Visitor v in besucher)
+            {
+                drehkreuz.WaitOne();
+                v.Status = "geht durch Drehkreuz";
+                Thread.Sleep(20);
+                drehkreuz.Set();
+                v.StartThread();
+            }
+        }
+
+        private void abortVisitor() {
+            foreach (Visitor v in besucher)
+            {
+                v.thread.Abort();
+            }
+        }
+
+        public void fillVisitor() {
+            for (int i = 0; i < startvisitors+450; i++)
+            {
+                this.Dispatcher.BeginInvoke(new Action(() => besucher.Add(new Visitor(ng.GenName(), "kommt an", rand.Next(30,150),this))));
+                Thread.Sleep(20);
             }
             this.Dispatcher.BeginInvoke(new Action(() => lb_cycle.Content = "Der Park ist geöffnet!"));
             timecycle.Start();
             countdown.Start();
+            VisitorDrehkreuz();
+            
+        }
+
+        private void Start_Button_Click(object sender, RoutedEventArgs e)
+        {
+            startvisitors = (Int32)visitor_slider.Value;
+            ThreadStart start = new ThreadStart(fillVisitor);
+            Thread t = new Thread(start);
+            t.Start();
+        }
+
+        private void OnClosed(object sender, EventArgs e)
+        {
+            abortVisitor();
         }
 
     }

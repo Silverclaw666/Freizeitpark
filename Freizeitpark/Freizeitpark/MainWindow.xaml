@@ -2,13 +2,14 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         WindowStartupLocation="CenterScreen"
-        Title="Freizeitpark Simulation" Height="878" Width="1202">
+        Title="Freizeitpark Simulation" Height="878" Width="1202" Closed="OnClosed">
     <Grid>
-        <ListBox x:Name="lb_personen" HorizontalAlignment="Left" Height="838" Margin="888,10,0,0" VerticalAlignment="Top" Width="296" ItemsSource="{Binding}" ItemTemplate="{DynamicResource BesucherTemplate}"/>
+        <ListBox x:Name="lb_personen" HorizontalAlignment="Left" Height="817" Margin="888,31,0,0" VerticalAlignment="Top" Width="296" ItemsSource="{Binding}" ItemTemplate="{DynamicResource BesucherTemplate}"/>
         <Button x:Name="Start_Button" Content="RELEASE THE KRAKEN!" HorizontalAlignment="Left" Margin="745,816,0,0" VerticalAlignment="Top" Width="138" Click="Start_Button_Click"/>
         <Label x:Name="lb_cycle" Content="" HorizontalAlignment="Left" Margin="745,10,0,0" VerticalAlignment="Top" Width="138"/>
         <Label x:Name="lb_money" Content="" HorizontalAlignment="Left" Margin="745,41,0,0" VerticalAlignment="Top" Width="138"/>
-        <TextBox x:Name="tb_time" HorizontalAlignment="Left" Height="30" Margin="596,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="161"/>
+        <TextBox x:Name="tb_time" HorizontalAlignment="Left" Height="30" Margin="836,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="47"/>
+        <Slider x:Name="visitor_slider" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="-9.25,0.364" Width="252" Minimum="1" Maximum="50" Value="1"/>
     </Grid>
     <Window.Resources>
         <DataTemplate x:Key="BesucherTemplate">
