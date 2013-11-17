@@ -2,14 +2,47 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         WindowStartupLocation="CenterScreen"
-        Title="Freizeitpark Simulation" Height="878" Width="1202" Closed="OnClosed">
+        Title="Freizeitpark Simulation" Height="878" Width="1202" Closed="OnClosed" ResizeMode="CanMinimize">
     <Grid>
+        <Label x:Name="lb_cycle" Content="Der Park ist geöffnet!" HorizontalAlignment="Left" Margin="745,10,0,0" VerticalAlignment="Top" Width="138"/>  
         <ListBox x:Name="lb_personen" HorizontalAlignment="Left" Height="817" Margin="888,31,0,0" VerticalAlignment="Top" Width="296" ItemsSource="{Binding}" ItemTemplate="{DynamicResource BesucherTemplate}"/>
         <Button x:Name="Start_Button" Content="RELEASE THE KRAKEN!" HorizontalAlignment="Left" Margin="745,816,0,0" VerticalAlignment="Top" Width="138" Click="Start_Button_Click"/>
-        <Label x:Name="lb_cycle" Content="" HorizontalAlignment="Left" Margin="745,10,0,0" VerticalAlignment="Top" Width="138"/>
-        <Label x:Name="lb_money" Content="" HorizontalAlignment="Left" Margin="745,41,0,0" VerticalAlignment="Top" Width="138"/>
-        <TextBox x:Name="tb_time" HorizontalAlignment="Left" Height="30" Margin="836,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="47"/>
-        <Slider x:Name="visitor_slider" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="-9.25,0.364" Width="252" Minimum="1" Maximum="50" Value="1"/>
+        <Label x:Name="lb_money" Content="Geld:" HorizontalAlignment="Left" Margin="745,41,0,0" VerticalAlignment="Top" Width="138"/>
+        <Expander x:Name="achterbahn_expander" Header="Achterbahn" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="293" Width="218">
+            <Grid HorizontalAlignment="Left" Height="269" Width="216">
+                <Label Content="Status:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                <Label Content="Fahrten:" HorizontalAlignment="Left" Margin="10,74,0,0" VerticalAlignment="Top"/>
+                <Label Content="Gefahrene Besucher:" HorizontalAlignment="Left" Margin="10,138,0,0" VerticalAlignment="Top" Background="#00000000"/>
+                <Label Content="Verdientes Geld:" HorizontalAlignment="Left" Margin="10,202,0,0" VerticalAlignment="Top"/>
+                <Label Content="{Binding Path=Status}" HorizontalAlignment="Left" Margin="10,41,0,0"  VerticalAlignment="Top" Width="196" BorderThickness="1" BorderBrush="Black" Height="28"/>
+                <Label Content="{Binding Path=Fahrten}" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top" Width="196" BorderThickness="1" BorderBrush="Black" Height="28"/>
+                <Label Content="{Binding Path=Passagiere}" HorizontalAlignment="Left" Margin="10,169,0,0" VerticalAlignment="Top" Width="196" BorderThickness="1" BorderBrush="Black" Height="28"/>
+                <Label Content="{Binding Path=Money}" HorizontalAlignment="Left" Margin="10,233,0,0" VerticalAlignment="Top" Width="196" BorderThickness="1" BorderBrush="Black" Height="26"/>
+            </Grid>
+        </Expander>
+        <Expander x:Name="tagada_expander" Header="Tagada" HorizontalAlignment="Left" Margin="233,13,0,0" VerticalAlignment="Top" Height="293" Width="218">
+            <Grid HorizontalAlignment="Left" Height="269" Width="216">
+                <Label Content="Status:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                <Label Content="Fahrten:" HorizontalAlignment="Left" Margin="10,74,0,0" VerticalAlignment="Top"/>
+                <Label Content="Gefahrene Besucher:" HorizontalAlignment="Left" Margin="10,138,0,0" VerticalAlignment="Top" Background="#00000000"/>
+                <Label Content="Verdientes Geld:" HorizontalAlignment="Left" Margin="10,202,0,0" VerticalAlignment="Top"/>
+                <Label Content="{Binding Path=Status}" HorizontalAlignment="Left" Margin="10,41,0,0"  VerticalAlignment="Top" Width="196" BorderThickness="1" BorderBrush="Black" Height="28"/>
+                <Label Content="{Binding Path=Fahrten}" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top" Width="196" BorderThickness="1" BorderBrush="Black" Height="28"/>
+                <Label Content="{Binding Path=Passagiere}" HorizontalAlignment="Left" Margin="10,169,0,0" VerticalAlignment="Top" Width="196" BorderThickness="1" BorderBrush="Black" Height="28"/>
+                <Label Content="{Binding Path=Money}" HorizontalAlignment="Left" Margin="10,233,0,0" VerticalAlignment="Top" Width="196" BorderThickness="1" BorderBrush="Black" Height="26"/>
+            </Grid>
+        </Expander>
+        <Expander x:Name="restaurant_expander" Header="Restaurant" HorizontalAlignment="Left" Margin="456,13,0,0" VerticalAlignment="Top" Height="293" Width="218">
+            <Grid HorizontalAlignment="Left" Height="269" Width="216">
+                <Label Content="Heutiges Gericht:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                <Label Content="Gäste:" HorizontalAlignment="Left" Margin="10,74,0,0" VerticalAlignment="Top"/>
+                <Label Content="Verdientes Geld:" HorizontalAlignment="Left" Margin="10,138,0,0" VerticalAlignment="Top" Background="#00000000"/>
+                <Label Content="{Binding Path=Gericht}" HorizontalAlignment="Left" Margin="10,41,0,0"  VerticalAlignment="Top" Width="196" BorderThickness="1" BorderBrush="Black" Height="28"/>
+                <Label Content="{Binding Path=Besucher}" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top" Width="196" BorderThickness="1" BorderBrush="Black" Height="28"/>
+                <Label Content="{Binding Path=Money}" HorizontalAlignment="Left" Margin="10,169,0,0" VerticalAlignment="Top" Width="196" BorderThickness="1" BorderBrush="Black" Height="28"/>
+            </Grid>
+        </Expander>
+        <Label x:Name="lb_besucher" Content="" HorizontalAlignment="Left" Margin="745,72,0,0" VerticalAlignment="Top" Width="138"/>
     </Grid>
     <Window.Resources>
         <DataTemplate x:Key="BesucherTemplate">
@@ -20,6 +53,5 @@
                 <TextBlock Text="{Binding Path=Status}" Width="130"/>
             </StackPanel>
         </DataTemplate>
-        
     </Window.Resources>
 </Window>

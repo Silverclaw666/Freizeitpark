@@ -63,7 +63,7 @@ namespace Freizeitpark
             }
         }
 
-        public Visitor(String name, String status, int geld ,MainWindow window, String currency = "€") {
+        public Visitor(String name, String status, int geld ,MainWindow window,String currency = "€") {
             Name = name;
             Status = status;
             Geld = geld;
@@ -78,11 +78,18 @@ namespace Freizeitpark
         }
 
         public void goHome() {
+            Status = "geht zum Ausgang";
+            Thread.Sleep(2000);
+            if (mwindow.besucher.Count == 1) {
+                mwindow.Dispatcher.BeginInvoke(new Action(() => this._thread.Abort()));
+                mwindow.Dispatcher.BeginInvoke(new Action(() => mwindow.besucher.Remove(mwindow.besucher.First())));
+            }
             mwindow.Dispatcher.BeginInvoke(new Action(() => this._thread.Abort()));
             mwindow.Dispatcher.BeginInvoke(new Action(() => mwindow.besucher.Remove(this)));
+            mwindow.Dispatcher.BeginInvoke(new Action(() => mwindow.lb_besucher.Content = "Besucher im Park: " + mwindow.besucher.Count));
         }
 
-        private void Start()
+        public void Start()
         {
             while (true)
             {
@@ -91,7 +98,7 @@ namespace Freizeitpark
                 if (this.Geld == 0) {
                     goHome();
                 }
-                this.i = rand.Next(0, 4);
+                this.i = rand.Next(0, 5);
                 Thread.Sleep(100);
                 switch (this.i)
                 {
@@ -101,6 +108,8 @@ namespace Freizeitpark
                             this.Status = "fährt mit Achterbahn";
                             this.Geld -= 8;
                             mwindow.earnedMoney += 8;
+                            mwindow.achterbahn.Money += 8;
+                            mwindow.achterbahn.Passagiere += 1;
                             mwindow.Dispatcher.BeginInvoke(new Action(() => mwindow.lb_money.Content = "Geld: " + mwindow.earnedMoney));
                             Thread.Sleep(8000);
                         }
@@ -115,6 +124,8 @@ namespace Freizeitpark
                             this.Status = "isst etwas";
                             this.Geld -= 15;
                             mwindow.earnedMoney += 15;
+                            mwindow.restaurant.Money += 15;
+                            mwindow.restaurant.Besucher += 1;
                             mwindow.Dispatcher.BeginInvoke(new Action(() => mwindow.lb_money.Content = "Geld: " + mwindow.earnedMoney));
                             Thread.Sleep(10000);
                         }
@@ -122,13 +133,20 @@ namespace Freizeitpark
                     case (3):
                         if (this.Geld >= 5)
                         {
-                            this.Status = "fährt mit Takata";
+                            this.Status = "fährt mit Tagada";
                             this.Geld -= 5;
                             mwindow.earnedMoney += 5;
+                            mwindow.tagada.Money += 5;
+                            mwindow.tagada.Passagiere += 1;
                             mwindow.Dispatcher.BeginInvoke(new Action(() => mwindow.lb_money.Content = "Geld: " + mwindow.earnedMoney));
                             Thread.Sleep(6000);
                         }
                         break;
+                    case (4):
+                        {
+                            goHome();
+                            break;
+                        }
                 }
             }
         }
@@ -137,7 +155,9 @@ namespace Freizeitpark
         protected virtual void OnPropertyChanged(PropertyChangedEventArgs e)
         {
             if (PropertyChanged != null)
+
                 PropertyChanged(this, e);
-            }
+
+        }
     }
 }
