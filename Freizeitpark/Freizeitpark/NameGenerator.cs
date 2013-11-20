@@ -9,9 +9,9 @@ namespace Freizeitpark
     public class NameGenerator
     {
         Random rand = new Random();
-        String mname = "David Mark Patrick Stefan Anton Maik Niklas Marco Hans Carl Mike Axel Stefan Sven Wolfgang Patrick";
+        String mname = "David Mark Patrick Stefan Anton Maik Niklas Marco Hans Carl Mike Axel Stefan Sven Wolfgang Günther Herbert";
         String wname = "Bettina Elisabeth Ulrike Alexandra Nadine Esther Daniela Nadja Nicole Annika Nathalie Claudia Nicole Linda Michaela";
-        String gname = "Schnitzel,Brathuhn,Schweinsbraten,Grillplatte,Käsespätzle,Gulasch";
+        String gname = "Schnitzel mit Bratkartoffeln,Brathuhn mit Pommes,Schweinsbraten mit Knödel,Grillplatte vom Schwein,Käsespätzle mit Salat,Gulasch mit Spätzle,Spaghetti Bolognese";
         String[] mnames;
         String[] wnames;
         String[] gnames;
@@ -34,7 +34,7 @@ namespace Freizeitpark
         }
 
         public String GenGericht() {
-            return gnames[rand.Next(gnames.Length)];
+            return gnames[0];
         }
     }
 }

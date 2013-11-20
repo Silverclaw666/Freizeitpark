@@ -11,7 +11,7 @@ namespace Freizeitpark
 {
     public class Visitor : INotifyPropertyChanged
     {
-        private Random rand = new Random();
+        private static Random rand = new Random();
         public Thread _thread;
         public MainWindow mwindow;
         public String name;
@@ -81,12 +81,19 @@ namespace Freizeitpark
             Status = "geht zum Ausgang";
             Thread.Sleep(2000);
             if (mwindow.besucher.Count == 1) {
-                mwindow.Dispatcher.BeginInvoke(new Action(() => this._thread.Abort()));
-                mwindow.Dispatcher.BeginInvoke(new Action(() => mwindow.besucher.Remove(mwindow.besucher.First())));
+                lock (mwindow.besucher)
+                {
+                    mwindow.Dispatcher.BeginInvoke(new Action(() => this._thread.Abort()));
+                    mwindow.Dispatcher.BeginInvoke(new Action(() => mwindow.besucher.Remove(mwindow.besucher.First())));
+                }
             }
-            mwindow.Dispatcher.BeginInvoke(new Action(() => this._thread.Abort()));
-            mwindow.Dispatcher.BeginInvoke(new Action(() => mwindow.besucher.Remove(this)));
+            lock (mwindow.besucher)
+            {
+                mwindow.Dispatcher.BeginInvoke(new Action(() => this._thread.Abort()));
+                mwindow.Dispatcher.BeginInvoke(new Action(() => mwindow.besucher.Remove(this)));
+            }
             mwindow.Dispatcher.BeginInvoke(new Action(() => mwindow.lb_besucher.Content = "Besucher im Park: " + mwindow.besucher.Count));
+            
         }
 
         public void Start()
@@ -98,10 +105,11 @@ namespace Freizeitpark
                 if (this.Geld == 0) {
                     goHome();
                 }
-                this.i = rand.Next(0, 5);
-                Thread.Sleep(100);
-                switch (this.i)
+                i = rand.Next(0, 5);
+                
+                switch (i)
                 {
+                
                     case (0):
                         if (this.Geld >= 8)
                         {
@@ -144,7 +152,18 @@ namespace Freizeitpark
                         break;
                     case (4):
                         {
-                            goHome();
+                            if (mwindow.ParkReady)
+                            {
+                                if (mwindow.ParkClosing == false)
+                                {
+                                    goHome();
+                                }
+                                else
+                                {
+                                    this.Status = "geht zum Ausgang";
+                                    Thread.Sleep(2000);
+                                }
+                            }
                             break;
                         }
                 }
